@@ -1,0 +1,66 @@
+@import "./common.less";
+
+@headerHeight: 30px;
+@leftWdith: 250px;
+* {
+    padding: 0;
+    margin: 0;
+}
+body, html {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+}
+.left {
+    .relPosition();
+    .block(@leftWdith, 100%);
+    background-color: #ffffffee;
+}
+.right {
+    .borderBox();
+    .absPosition();
+    .block(100%, 100%);
+    padding-left: @leftWdith;
+}
+.header {
+    .borderBox();
+    .relPosition();
+    .block(100%, @headerHeight);
+    -webkit-app-region: drag;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    * {
+        -webkit-app-region: no-drag;
+    }
+    .window-ctrl-group {
+        .block(auto, 100%);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        .window-ctrl {
+            cursor: pointer;
+            padding-right: 5px;
+            opacity: .7;
+            transition: opacity .3s;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+.body {
+    .borderBox();
+    .block(100%, 100%);
+    .absPosition(0, 0);
+}
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

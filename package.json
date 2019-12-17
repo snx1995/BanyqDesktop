@@ -1,0 +1,28 @@
+{
+  "name": "banyq-desktop",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder",
+    "dist": "electron-builder --dir"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "build": {
+    "appId": "banyq.desktop"
+  },
+  "author": "banyq",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^7.1.5",
+    "electron-builder": "^21.2.0"
+  }
+}

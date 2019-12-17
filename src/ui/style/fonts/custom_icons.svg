@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Banyq custom icon</metadata>
+<defs>
+<font id="banyq" horiz-adv-x="1024">
+<font-face units-per-em="1024" ascent="960" descent="-64" />
+<missing-glyph horiz-adv-x="1024" />
+<glyph unicode="&#xf2df;" glyph-name="win-min" d="M0 18L18 18" />
+<glyph unicode="&#xfb01;" glyph-name="win-max" d="M23 0L41 0L41 18L23 18Z" />
+<glyph unicode="&#xfb02;" glyph-name="win-close" d="M46 0L64 18M46 18L64 0" />
+</font></defs></svg>
