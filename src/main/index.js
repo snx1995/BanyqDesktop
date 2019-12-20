@@ -64,6 +64,9 @@ ipcMain.on('cmd', (e, ...args) => {
         case 'unmaximize':
             currWindow.unmaximize();
             break;
+        case 'minimize':
+            currWindow.minimize();
+            break;
         case 'top':
             currWindow.setAlwaysOnTop(!currWindow.isAlwaysOnTop());
             break;

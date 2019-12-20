@@ -7,28 +7,28 @@
             <div></div>
             <div class="window-ctrls" @click="handleWindowCtrlClick">
                 <Icon type="svg" class="window-ctrl" data-ctrl="devTools">
-                    <path d="M1 1H17V17H1ZM1 5H17M7 7L3 11L7 15M9 7L13 15" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M1 1H17V17H1ZM1 5H17M7 7L3 11L7 15M9 7L13 15"/>
                 </Icon>
                 <Icon type="svg" class="window-ctrl" data-ctrl="back">
-                    <path d="M16 2L2 9L16 16" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M16 2L2 9L16 16"/>
                 </Icon>
                 <Icon type="svg" class="window-ctrl" data-ctrl="go">
-                    <path d="M2 2L16 9L2 16" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M2 2L16 9L2 16"/>
                 </Icon>
                 <Icon type="svg" class="window-ctrl" data-ctrl="top">
-                    <path d="M2 2H16M2 16L9 7L16 16" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M2 2H16M2 16L9 7L16 16"/>
                 </Icon>
                 <Icon type="svg" class="window-ctrl" data-ctrl="minimize">
-                    <path d="M1 17H17" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M1 17H17"/>
                 </Icon>
                 <Icon type="svg" class="window-ctrl" data-ctrl="unmaximize">
-                    <path d="M1 4H14V17H1ZM4 4V1H17V14H14" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M1 4H14V17H1ZM4 4V1H17V14H14"/>
                 </Icon>
                 <Icon type="svg" class="window-ctrl" data-ctrl="maximize">
-                    <path d="M1 1H17V17H1Z" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M1 1H17V17H1Z"/>
                 </Icon>
                 <Icon type="svg" class="window-ctrl" data-ctrl="close">
-                    <path d="M1 1L17 17M1 17L17 1" fill="none" stroke="#555" style="stroke-width: 1px;"/>
+                    <path d="M1 1L17 17M1 17L17 1"/>
                 </Icon>
             </div>
         </div>
@@ -49,7 +49,12 @@ export default {
             if (target.matches('.window-ctrl, .window-ctrl *')) {
                 const closest = target.closest('.window-ctrl');
                 const winctrl = closest ? closest : target;
-                ipcRenderer.send('cmd', winctrl.dataset.ctrl);
+                const ctrl = winctrl.dataset.ctrl;
+                if (ctrl == 'go' || ctrl == 'back') {
+                    const go = ctrl == 'go' ? 1 : -1;
+                    this.$router.go(go);
+                }
+                ipcRenderer.send('cmd', ctrl);
             }
         }
     }
@@ -91,6 +96,11 @@ body, html {
             }
             &:active {
                 opacity: .8;
+            }
+            path {
+                fill: none;
+                stroke-width: 1px;
+                stroke: #555;
             }
         }
     }
