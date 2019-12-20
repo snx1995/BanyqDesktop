@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import axios from 'axios'
 
+import Base from './components/base';
+
 import App from './App'
 import router from './router'
 import store from './store'

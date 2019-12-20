@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 /**
  * Set `__static` path to static files in production
@@ -18,13 +18,17 @@ function createWindow() {
      * Initial window options
      */
     mainWindow = new BrowserWindow({
-        height: 563,
+        width: 600,
+        minWidth: 600,
+        height: 400,
+        minHeight: 400,
         useContentSize: true,
-        width: 1000,
         webPreferences: {
             nodeIntegration: true
         },
-        frame: false
+        frame: false,
+        x: 20,
+        y: 200
     })
 
     mainWindow.loadURL(winURL)
@@ -32,7 +36,41 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = null
     })
+
+    mainWindow.on('unmaximize', e => {
+        console.log('unmax', mainWindow.getSize());
+        
+    })
+
+    mainWindow.on('maximize', e => {
+        console.log('max', mainWindow.getSize());
+    })
 }
+
+ipcMain.on('cmd', (e, ...args) => {
+    const currWindow = BrowserWindow.getFocusedWindow();
+    const currWebcontents = e.sender;
+    switch (args[0]) {
+        case 'devTools':
+            if (currWebcontents.isDevToolsOpened()) {
+                currWebcontents.closeDevTools();
+            } else {
+                currWebcontents.openDevTools();
+            }
+            break;
+        case 'maximize':
+            currWindow.maximize();
+            break;
+        case 'unmaximize':
+            currWindow.unmaximize();
+            break;
+        case 'top':
+            currWindow.setAlwaysOnTop(!currWindow.isAlwaysOnTop());
+            break;
+        default:
+            console.warn(`invalid cmd received: ${args[0]}`);
+    }
+})
 
 app.on('ready', createWindow)
 

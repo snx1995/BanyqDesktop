@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "banyq <banyq@yonyou.com>",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -17,8 +17,8 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "electron-vue-temp",
-    "appId": "com.example.yourapp",
+    "productName": "banyq-desktop",
+    "appId": "art.banyq.www",
     "directories": {
       "output": "build"
     },
